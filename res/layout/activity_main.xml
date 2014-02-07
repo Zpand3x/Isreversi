@@ -29,24 +29,15 @@
         android:text="Ranked match" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button1V1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/button1"
         android:layout_alignRight="@+id/button1"
         android:layout_below="@+id/button1"
         android:layout_marginTop="22dp"
-        android:text="1 vs. 1" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignRight="@+id/button2"
-        android:layout_below="@+id/button2"
-        android:layout_marginTop="23dp"
-        android:text="Play vs. computer" />
+        android:text="1 vs. 1"
+        android:onClick="play1V1" />
 
     <Button
         android:id="@+id/button4"
@@ -57,5 +48,15 @@
         android:layout_alignRight="@+id/button3"
         android:layout_marginBottom="27dp"
         android:text="Settings" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button1V1"
+        android:layout_alignRight="@+id/button1V1"
+        android:layout_below="@+id/button1V1"
+        android:layout_marginTop="26dp"
+        android:text="Play vs. computer" />
 
 </RelativeLayout>

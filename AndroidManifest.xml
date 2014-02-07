@@ -13,6 +13,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <!-- Splash screen -->
         <activity
             android:name="is.hopur9.isreversi.SplashScreen"
@@ -21,14 +22,21 @@
             android:theme="@android:style/Theme.Black.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
         <!-- MainActivity -->
         <activity
             android:name="is.hopur9.isreversi.MainActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="is.hopur9.isreversi.GameActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_game"
+            android:theme="@style/FullscreenTheme" >
         </activity>
     </application>
 
