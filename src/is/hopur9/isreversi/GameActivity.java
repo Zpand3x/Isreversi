@@ -1,7 +1,6 @@
 package is.hopur9.isreversi;
 
 import android.app.Activity;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.SoundEffectConstants;
@@ -21,7 +20,7 @@ public class GameActivity extends Activity
     protected void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_game);
         
         nextPlayer = 'w';
         
