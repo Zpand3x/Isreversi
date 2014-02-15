@@ -22,11 +22,12 @@ public class GameActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         
+        mThumbIds = new Integer[64];
+        
         isReversi.initBoard();
         IsReversiCheckMoves.LegalMoves();
         nextPlayer = Globals.player;
         drawBoard();
-        
         
         GridView gridview = (GridView) findViewById(R.id.gridview);
         adapter = new ImageAdapter(this, mThumbIds);
@@ -40,16 +41,10 @@ public class GameActivity extends Activity
             	
             	isReversi.placeDisks(xy[0], xy[1]);
             	
-            	System.out.println(Globals.board[xy[0]][xy[1]]);
-            	System.out.println(Globals.board[3][4]);
-            	
-            	System.out.println("x er "+xy[0]);
-            	System.out.println("y er "+xy[1]);
-            	
             	if (Globals.player != tempPlayer) {
-            		System.out.println("derp");
             		drawBoard();
                 	adapter.notifyDataSetChanged();
+                	updateScores();
             	}
             	
             	/*
@@ -73,18 +68,20 @@ public class GameActivity extends Activity
     
     private void drawBoard() {
     	
-    	mThumbIds = ArrayProjection.MatrixProjection();
+    	Integer[] board = ArrayProjection.MatrixProjection();
         
         for (int i = 0; i < 64; i++)
         {
-        	if (mThumbIds[i] == 1) {
+        	if (board[i] == 1) {
         		mThumbIds[i] = R.drawable.white;
-        	} else if (mThumbIds[i] == 2) {
+        		System.out.println("white");
+        	} else if (board[i] == 2) {
         		mThumbIds[i] = R.drawable.black;
+        		System.out.println("black");
         	} else {
         		mThumbIds[i] = R.drawable.empty;
+        		System.out.println("empty");
         	}
-        
         }
         
         IsReversiCheckMoves.LegalMoves();
