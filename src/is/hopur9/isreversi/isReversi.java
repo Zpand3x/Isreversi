@@ -1,6 +1,9 @@
 package is.hopur9.isreversi;
 
 public class isReversi {
+	
+	public static int hasNoMoves = 0;
+	public static boolean gameOver = false;
 
 		
 	public static void initBoard(){
@@ -11,7 +14,33 @@ public class isReversi {
 		Globals.board[4][3]=2;
 	}
 	
+	public static void checkStatus(){
+		IsReversiCheckMoves.LegalMoves();
+		if (Globals.isLegal) {
+			hasNoMoves = 0;
+		} else {
+			System.out.println("No legal moves!");
+			hasNoMoves++;
+		
+			if (hasNoMoves > 1) {
+				gameOver = true;
+				System.out.println("GameOver!");
+				newGame();
+			}
+			if(Globals.player == 1) {
+				Globals.player++;
+			} else {
+				Globals.player--;
+			}
+		}
+			
+	}
 	
+	public static void newGame() {
+		Globals.board = new int[8][8];
+		initBoard();
+        GameActivity.drawBoard();
+	}
 	
 	public static void placeDisks(int x, int y){
 	
@@ -23,7 +52,9 @@ public class isReversi {
 			} else {
 				Globals.player--;
 			}
+		
 		}
+		checkStatus();
 	}
 	
 	public static int[] score(){

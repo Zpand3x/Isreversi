@@ -5,13 +5,16 @@ public class IsReversiCheckMoves {
 	public  static int[][] LegalMoves()
 	{	
 		int[] row;
-		for(int i = 0; i<8; i++)
+		
+		Globals.legalmoves = new int[8][8];
+		Globals.isLegal = false;
+		/*for(int i = 0; i<8; i++)
 		{
 			for(int j = 0; j<8; j++)
 			{
 				Globals.legalmoves[i][j] = 0;
 			}
-		}
+		}*/
 		
 		for(int i = 0; i<8; i++)
 		{
@@ -81,7 +84,7 @@ public class IsReversiCheckMoves {
 			return notLegal;
 		}
 		
-		boolean isLegal = false;
+		
 		while(x+deltaX >= 0 && y+deltaY >= 0 && x+deltaX <= 7 && y+deltaY <= 7)
 		{
 			x = x+deltaX;
@@ -89,7 +92,7 @@ public class IsReversiCheckMoves {
 			
 			if(Globals.board[x][y] == 0)
 			{
-				isLegal = true;
+				Globals.isLegal = true;
 				legalMove[0] = x;
 				legalMove[1] = y;
 				break;
@@ -101,7 +104,7 @@ public class IsReversiCheckMoves {
 			}
 		}
 		
-		if(isLegal)
+		if(Globals.isLegal)
 		{
 			return legalMove;
 		}

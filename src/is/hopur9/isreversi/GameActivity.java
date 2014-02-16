@@ -12,9 +12,10 @@ import android.widget.TextView;
 
 public class GameActivity extends Activity 
 {
-	private Integer[] mThumbIds;
+	public static Integer[] mThumbIds;
 	private ImageAdapter adapter;
-	private Integer nextPlayer;
+	
+	
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -24,9 +25,8 @@ public class GameActivity extends Activity
         
         mThumbIds = new Integer[64];
         
+        
         isReversi.initBoard();
-        IsReversiCheckMoves.LegalMoves();
-        nextPlayer = Globals.player;
         drawBoard();
         
         GridView gridview = (GridView) findViewById(R.id.gridview);
@@ -39,12 +39,17 @@ public class GameActivity extends Activity
             	int tempPlayer = Globals.player;
             	int[] xy = ArrayProjection.IntegerProjection(position);
             	
+            	
             	isReversi.placeDisks(xy[0], xy[1]);
+            	System.out.println(""+Globals.player);
+            	System.out.println("x "+xy[0]+" y " + xy[1]);
+
             	
             	if (Globals.player != tempPlayer) {
             		drawBoard();
                 	adapter.notifyDataSetChanged();
                 	updateScores();
+                	v.playSoundEffect(SoundEffectConstants.CLICK);
             	}
             	
             	/*
@@ -66,7 +71,7 @@ public class GameActivity extends Activity
         });
     }
     
-    private void drawBoard() {
+    public static void drawBoard() {
     	
     	Integer[] board = ArrayProjection.MatrixProjection();
         
@@ -74,13 +79,10 @@ public class GameActivity extends Activity
         {
         	if (board[i] == 1) {
         		mThumbIds[i] = R.drawable.white;
-        		System.out.println("white");
         	} else if (board[i] == 2) {
         		mThumbIds[i] = R.drawable.black;
-        		System.out.println("black");
         	} else {
         		mThumbIds[i] = R.drawable.empty;
-        		System.out.println("empty");
         	}
         }
         
