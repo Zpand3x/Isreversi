@@ -86,6 +86,8 @@ public class GameActivity extends Activity
         	}
         }
         
+        IsReversiCheckMoves.LegalMoves();
+        
         int cell = 0;
         for (int i = 0; i < 8; i++)
         {
@@ -99,8 +101,6 @@ public class GameActivity extends Activity
         		cell++;
         	}
         }
-        
-        IsReversiCheckMoves.LegalMoves();
     }
     
     
