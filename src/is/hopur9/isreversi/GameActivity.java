@@ -86,6 +86,20 @@ public class GameActivity extends Activity
         	}
         }
         
+        int cell = 0;
+        for (int i = 0; i < 8; i++)
+        {
+        	for (int j = 0; j < 8; j++)
+        	{
+        		if (Globals.legalmoves[i][j] == 1 || Globals.legalmoves[i][j] == 2)
+        		{
+        			mThumbIds[cell] = R.drawable.legal;
+        		}
+        		
+        		cell++;
+        	}
+        }
+        
         IsReversiCheckMoves.LegalMoves();
     }
     
