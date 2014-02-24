@@ -16,7 +16,7 @@
 
         <!-- Splash screen -->
         <activity
-            android:name="is.hopur9.isreversi.SplashScreen"
+            android:name="is.hopur9.userinterface.SplashScreen"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
@@ -29,11 +29,11 @@
 
         <!-- MainActivity -->
         <activity
-            android:name="is.hopur9.isreversi.MainActivity"
+            android:name="is.hopur9.userinterface.MainActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="is.hopur9.isreversi.GameActivity"
+            android:name="is.hopur9.userinterface.GameActivity"
             android:label="@string/title_activity_game"
             android:screenOrientation="portrait" >
         </activity>

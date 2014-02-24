@@ -1,4 +1,4 @@
-package is.hopur9.isreversi;
+package is.hopur9.javamethods;
 
 public class Globals {
 

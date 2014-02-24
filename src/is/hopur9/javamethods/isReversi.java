@@ -1,4 +1,6 @@
-package is.hopur9.isreversi;
+package is.hopur9.javamethods;
+
+import is.hopur9.userinterface.GameActivity;
 
 public class isReversi {
 	

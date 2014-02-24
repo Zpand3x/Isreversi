@@ -1,5 +1,14 @@
-package is.hopur9.isreversi;
+package is.hopur9.userinterface;
 
+import is.hopur9.isreversi.R;
+import is.hopur9.isreversi.R.drawable;
+import is.hopur9.isreversi.R.id;
+import is.hopur9.isreversi.R.layout;
+import is.hopur9.isreversi.R.menu;
+import is.hopur9.javamethods.ArrayProjection;
+import is.hopur9.javamethods.Globals;
+import is.hopur9.javamethods.IsReversiCheckMoves;
+import is.hopur9.javamethods.isReversi;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -49,7 +58,6 @@ public class GameActivity extends Activity
             		drawBoard();
                 	adapter.notifyDataSetChanged();
                 	updateScores();
-                	v.playSoundEffect(SoundEffectConstants.CLICK);
             	}
             	
             	/*

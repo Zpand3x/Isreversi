@@ -1,5 +1,7 @@
-package is.hopur9.isreversi;
+package is.hopur9.userinterface;
 
+import is.hopur9.isreversi.R;
+import is.hopur9.isreversi.R.layout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

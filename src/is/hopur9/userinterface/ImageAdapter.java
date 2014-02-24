@@ -1,4 +1,4 @@
-package is.hopur9.isreversi;
+package is.hopur9.userinterface;
 
 import android.content.Context;
 import android.graphics.Point;
