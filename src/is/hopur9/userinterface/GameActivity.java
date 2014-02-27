@@ -1,30 +1,29 @@
 package is.hopur9.userinterface;
 
 import is.hopur9.isreversi.R;
-import is.hopur9.isreversi.R.drawable;
-import is.hopur9.isreversi.R.id;
-import is.hopur9.isreversi.R.layout;
-import is.hopur9.isreversi.R.menu;
 import is.hopur9.javamethods.ArrayProjection;
+import is.hopur9.javamethods.Computer;
 import is.hopur9.javamethods.Globals;
 import is.hopur9.javamethods.IsReversiCheckMoves;
 import is.hopur9.javamethods.isReversi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.SoundEffectConstants;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class GameActivity extends Activity 
 {
+	private int type;
+	
 	public static Integer[] mThumbIds;
 	private ImageAdapter adapter;
-	
-	
+	private Computer computer;	
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -32,8 +31,12 @@ public class GameActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         
+        Intent intent = getIntent();
+        type = intent.getIntExtra("type", 2);
+        
         mThumbIds = new Integer[64];
         
+        computer = new Computer(this, this);
         
         isReversi.initBoard();
         drawBoard();
@@ -54,12 +57,20 @@ public class GameActivity extends Activity
             	System.out.println("x "+xy[0]+" y " + xy[1]);
 
             	
-            	if (Globals.player != tempPlayer) {
+            	if (Globals.player != tempPlayer) 
+            	{
             		drawBoard();
                 	adapter.notifyDataSetChanged();
                 	updateScores();
+                	updatePlayersTurn();
+                	
+                	if (type == 3)
+                	{
+                		System.out.println("TURN " + Globals.player);
+                		computer.makeMove();
+                	}
             	}
-            	
+            	            	
             	/*
             	if (nextPlayer == 1)
             	{
@@ -126,6 +137,24 @@ public class GameActivity extends Activity
     	
     	TextView bScore = (TextView) findViewById(R.id.blackCnt);
     	bScore.setText(b + "");
+    	
+    	
+    }
+    
+    private void updatePlayersTurn()
+    {
+    	ImageView v = (ImageView) findViewById(R.id.currentPlayer);
+    	
+    	if (Globals.player == 1) v.setImageResource(R.drawable.white2);
+    	else if (Globals.player == 2) v.setImageResource(R.drawable.black2);
+    }
+    
+    public void update()
+    {
+    	drawBoard();
+    	adapter.notifyDataSetChanged();
+    	updateScores();
+    	updatePlayersTurn();
     }
 
     @Override

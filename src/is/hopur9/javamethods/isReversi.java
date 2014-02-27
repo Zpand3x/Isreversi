@@ -20,7 +20,7 @@ public class isReversi {
 		IsReversiCheckMoves.LegalMoves();
 		if (Globals.isLegal) {
 			hasNoMoves = 0;
-		} else {
+		} /*else {
 			System.out.println("No legal moves!");
 			hasNoMoves++;
 		
@@ -34,7 +34,7 @@ public class isReversi {
 			} else {
 				Globals.player--;
 			}
-		}
+		}*/
 			
 	}
 	

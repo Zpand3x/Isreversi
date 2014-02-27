@@ -18,7 +18,7 @@
         android:src="@drawable/logo2" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/buttonRanked"
         style="@style/AppBaseTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,9 +32,9 @@
         android:id="@+id/button1V1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_alignRight="@+id/button1"
-        android:layout_below="@+id/button1"
+        android:layout_alignLeft="@+id/buttonRanked"
+        android:layout_alignRight="@+id/buttonRanked"
+        android:layout_below="@+id/buttonRanked"
         android:layout_marginTop="22dp"
         android:text="1 vs. 1"
         android:onClick="play1V1" />
@@ -43,14 +43,14 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button3"
+        android:layout_alignLeft="@+id/buttonAI"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/button3"
+        android:layout_alignRight="@+id/buttonAI"
         android:layout_marginBottom="27dp"
         android:text="Settings" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonAI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/button1V1"
