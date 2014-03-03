@@ -65,7 +65,9 @@ public class Computer
 					cell++;
 				}
 			}
-			
+				
+			/* Heimsk gervigreind */
+			/*
 			Random rand = new Random();
 			int n = rand.nextInt(possibleMoves.size());
 			
@@ -75,7 +77,25 @@ public class Computer
 			
 			isReversi.placeDisks(xy[0], xy[1]);
 			System.out.println("COMPUTER PLACES DISK AT: " + xy[0] + " " + xy[1]);
-		
+			*/
+			
+			/* Gervigreind sem velur leik sem snýr við flestum skífum */
+			int max = 0;
+			int pick = 0;
+			
+			for (int i = 0; i < possibleMoves.size(); i++)
+			{
+				int score = isReversi.rateMove(possibleMoves.get(i), Globals.player);
+				if (score > max)
+				{
+					max = score;
+					pick = possibleMoves.get(i);
+				}
+			}
+			
+			int xy[] = ArrayProjection.IntegerProjection(pick);
+			isReversi.placeDisks(xy[0], xy[1]);
+			
 			return null;
 		}
 		

@@ -59,6 +59,47 @@ public class isReversi {
 		checkStatus();
 	}
 	
+	public static int rateMove(int m, int p)
+	{
+		int[][] boardCopy = new int[8][8];
+		boardCopy = copy(Globals.board);
+		
+		int playerCopy = Globals.player;
+		int[] move = ArrayProjection.IntegerProjection(m);
+		int x = move[0];
+		int y = move[1];
+		
+		Globals.board[x][y]	= p;
+		FlipCoins.FlipIt(x, y);
+		
+		int rating = 0;
+		for (int i = 0; i < 8; i++)
+		{
+			for (int j = 0; j < 8; j++)
+			{
+				if (Globals.board[i][j] == p) rating++;
+			}
+		}
+		
+		Globals.board = boardCopy;
+		Globals.player = playerCopy;
+		
+		return rating;
+	}
+	
+	private static int[][] copy(int[][] a)
+	{
+		int[][] ret = new int[a.length][a[0].length];
+		for (int i = 0; i < a.length; i++)
+		{
+			for (int j = 0; j < a[0].length; j++)
+			{
+				ret[i][j] = a[i][j];
+			}
+		}
+		return ret;
+	}
+	
 	public static int[] score(){
 		int result[] = new int[2];
 		
