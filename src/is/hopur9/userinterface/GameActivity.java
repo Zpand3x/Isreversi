@@ -2,10 +2,10 @@ package is.hopur9.userinterface;
 
 import is.hopur9.isreversi.R;
 import is.hopur9.javamethods.ArrayProjection;
-import is.hopur9.javamethods.Computer;
 import is.hopur9.javamethods.Globals;
 import is.hopur9.javamethods.IsReversiCheckMoves;
 import is.hopur9.javamethods.isReversi;
+import Objects.Computer;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

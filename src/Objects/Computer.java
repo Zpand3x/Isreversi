@@ -1,5 +1,8 @@
-package is.hopur9.javamethods;
+package Objects;
 
+import is.hopur9.javamethods.ArrayProjection;
+import is.hopur9.javamethods.Globals;
+import is.hopur9.javamethods.isReversi;
 import is.hopur9.userinterface.GameActivity;
 
 import java.util.ArrayList;
@@ -26,6 +29,45 @@ public class Computer
 		task.execute();
 	}
 	
+	private int minimax(Board node, int depth, int player)
+	{	
+		ArrayList<Cell> legalMoves = node.getLegalMoves(player);
+		
+		if (legalMoves.isEmpty() || depth == 0)
+		{
+			return node.getScoreDifferential();
+		}
+		
+		if (player == 2) // Maximizing player
+		{
+			int bestValue = Integer.MIN_VALUE;
+			for (int i = 0; i < legalMoves.size(); i++ )
+			{
+				Cell move = legalMoves.get(i);
+				Board child = new Board(node.getState());
+				child.placeDisk(move.x, move.y, player);
+				
+				int val = minimax(child, depth - 1, 2);
+				bestValue = Math.max(bestValue, val);
+			}
+			return bestValue;
+		}
+		else // Minimizing player
+		{
+			int bestValue = Integer.MAX_VALUE;
+			for (int i = 0; i < legalMoves.size(); i++)
+			{
+				Cell move = legalMoves.get(i);
+				Board child = new Board(node.getState());
+				child.placeDisk(move.x, move.y, player);
+				
+				int val = minimax(child, depth - 1, 1);
+				bestValue = Math.min(bestValue, val);
+			}
+			return bestValue;
+		}
+	}
+	
 	private class BackgroundTask extends AsyncTask<Void, Void, Void>
 	{
 		ProgressDialog myProgressDialog = new ProgressDialog(context);
@@ -41,6 +83,7 @@ public class Computer
 		@Override
 		protected Void doInBackground(Void... arg)
 		{
+			/*
 			try
 			{
 				Thread.sleep(2000);
@@ -49,6 +92,7 @@ public class Computer
 			{
 				// Nothing
 			}
+			*/	
 				
 			ArrayList<Integer> possibleMoves = new ArrayList<Integer>();
 			
@@ -80,12 +124,34 @@ public class Computer
 			*/
 			
 			/* Gervigreind sem velur leik sem snýr við flestum skífum */
+			/*
 			int max = 0;
 			int pick = 0;
 			
 			for (int i = 0; i < possibleMoves.size(); i++)
 			{
 				int score = isReversi.rateMove(possibleMoves.get(i), Globals.player);
+				if (score > max)
+				{
+					max = score;
+					pick = possibleMoves.get(i);
+				}
+			}
+			*/
+			
+			/* Minimax gervigreind */
+			int max = Integer.MIN_VALUE;
+			int pick = 0;
+			
+			for (int i = 0; i < possibleMoves.size(); i++)
+			{
+				int[] move = ArrayProjection.IntegerProjection(possibleMoves.get(i));
+				Board currBoard = new Board(Globals.board);
+				currBoard.placeDisk(move[0], move[1], 2);
+				
+				int score = minimax(currBoard, 3, 2);
+				System.out.println("MINIMAX: " + score);
+				
 				if (score > max)
 				{
 					max = score;
