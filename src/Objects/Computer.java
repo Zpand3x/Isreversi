@@ -68,6 +68,51 @@ public class Computer
 		}
 	}
 	
+	private int alphabeta(Board node, int depth, int alpha, int beta, int player)
+	{
+		ArrayList<Cell> legalMoves = node.getLegalMoves(player);
+		
+		if (legalMoves.isEmpty() || depth == 0)
+		{
+			return node.getScoreDifferential();
+		}
+		
+		if (player == 2) // Maximizing player
+		{
+			for (int i = 0; i < legalMoves.size(); i++)
+			{
+				Cell move = legalMoves.get(i);
+				Board child = new Board(node.getState());
+				child.placeDisk(move.x, move.y, player);
+				
+				alpha = Math.max(alpha, alphabeta(child, depth - 1, alpha, beta, 1));
+			
+				if (beta <= alpha)
+				{
+					break;
+				}
+			}
+			return alpha;
+		}
+		else
+		{
+			for (int i = 0; i < legalMoves.size(); i++)
+			{
+				Cell move = legalMoves.get(i);
+				Board child = new Board(node.getState());
+				child.placeDisk(move.x, move.y, player);
+				
+				beta = Math.min(beta, alphabeta(child, depth - 1, alpha, beta, 2));
+			
+				if (beta <= alpha)
+				{
+					break;
+				}
+			}
+			return beta;
+		}
+	}
+	
 	private class BackgroundTask extends AsyncTask<Void, Void, Void>
 	{
 		ProgressDialog myProgressDialog = new ProgressDialog(context);
@@ -149,7 +194,7 @@ public class Computer
 				Board currBoard = new Board(Globals.board);
 				currBoard.placeDisk(move[0], move[1], 2);
 				
-				int score = minimax(currBoard, 3, 2);
+				int score = alphabeta(currBoard, 4, Integer.MIN_VALUE, Integer.MAX_VALUE, 2); //minimax(currBoard, 3, 2);
 				System.out.println("MINIMAX: " + score);
 				
 				if (score > max)
