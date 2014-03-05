@@ -121,23 +121,15 @@ public class Computer
 		protected void onPreExecute()
 		{
 			myProgressDialog.setMessage("I'm thinking...");
+			myProgressDialog.setCancelable(false);
 			myProgressDialog.show();
 			super.onPreExecute();
 		}
 		
 		@Override
 		protected Void doInBackground(Void... arg)
-		{
-			/*
-			try
-			{
-				Thread.sleep(2000);
-			}
-			catch (InterruptedException e)
-			{
-				// Nothing
-			}
-			*/	
+		{		
+			long startTime = System.currentTimeMillis();
 				
 			ArrayList<Integer> possibleMoves = new ArrayList<Integer>();
 			
@@ -206,6 +198,22 @@ public class Computer
 			
 			int xy[] = ArrayProjection.IntegerProjection(pick);
 			isReversi.placeDisks(xy[0], xy[1]);
+			
+			long elapsedTime = System.currentTimeMillis() - startTime;
+			
+			// Bíðum í smá stund ef tölvan var fljót að hugsa 
+			// svo að notandi sjái að hún sé að gera.
+			if (elapsedTime < 100)
+			{
+				try
+				{
+					Thread.sleep(1000);
+				}
+				catch (InterruptedException e)
+				{
+					// Nothing
+				}
+			}
 			
 			return null;
 		}
